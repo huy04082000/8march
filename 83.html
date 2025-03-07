@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng Ngày 8/3</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Biến CSS toàn cục */
+        :root {
+            --primary-color: #FF1493;
+            --secondary-color: #C71585;
+            --tertiary-color: #8B008B;
+            --background-color: #FFF0F5;
+            --light-pink: #FFD1DC;
+            --white: #FFFFFF;
+        }
+
+        /* Thiết lập nền và font */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--background-color);
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Gradient background */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #FFF0F5 0%, #FFD1DC 100%);
+            z-index: -2;
+        }
+
+        /* Vòng trang trí */
+        .decorative-circles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            opacity: 0.5;
+        }
+
+        /* Container chính */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Khung trang trí */
+        .decorative-frame {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 2px dashed var(--primary-color);
+            border-radius: 15px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Trang trí góc */
+        .corner-decoration {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            z-index: 2;
+        }
+
+        .top-left {
+            top: 10px;
+            left: 10px;
+        }
+
+        .top-right {
+            top: 10px;
+            right: 10px;
+        }
+
+        .bottom-left {
+            bottom: 10px;
+            left: 10px;
+        }
+
+        .bottom-right {
+            bottom: 10px;
+            right: 10px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        .title {
+            font-size: 48px;
+            color: var(--primary-color);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Message container */
+        .message-container {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            border: 2px solid var(--primary-color);
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            text-align: center;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .message {
+            font-size: 20px;
+            color: var(--tertiary-color);
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 20px;
+        }
+
+        /* Hiệu ứng (Flowers, Hearts, Butterflies) */
+        /* Flower */
+        .flower {
+            position: absolute;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .petal {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            transform-origin: center;
+        }
+
+        .center {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: yellow;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Heart */
+        .heart {
+            position: absolute;
+            z-index: 0;
+            width: 30px;
+            height: 30px;
+            pointer-events: none;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 24px;
+            background-color: red;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .heart::before {
+            left: 0;
+            transform: rotate(-45deg);
+            transform-origin: 100% 100%;
+        }
+
+        .heart::after {
+            left: 7.5px;
+            transform: rotate(45deg);
+            transform-origin: 0 100%;
+        }
+
+        /* Butterfly */
+        .butterfly {
+            position: absolute;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .wing {
+            position: absolute;
+            width: 20px;
+            height: 30px;
+            background-color: purple;
+            border-radius: 50% 50% 0 50%;
+        }
+
+        .left-wing {
+            transform: rotate(-30deg);
+            left: -20px;
+        }
+
+        .right-wing {
+            transform: rotate(30deg) scaleX(-1);
+            right: -20px;
+        }
+
+        .body {
+            position: absolute;
+            width: 4px;
+            height: 25px;
+            background-color: black;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .antenna {
+            position: absolute;
+            width: 2px;
+            height: 10px;
+            background-color: black;
+            top: 0;
+        }
+
+        .left-antenna {
+            left: 5px;
+            transform: rotate(-30deg);
+        }
+
+        .right-antenna {
+            right: 5px;
+            transform: rotate(30deg);
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: gold;
+            border-radius: 50%;
+            animation: twinkle 1s infinite alternate;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes twinkle {
+            0% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        /* Petals */
+        .falling-petal {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: pink;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            opacity: 0.8;
+            animation: fall 10s linear forwards;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-20px) rotate(0deg);
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        @keyframes flutter {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(10px, -10px) rotate(5deg);
+            }
+            50% {
+                transform: translate(0, -20px) rotate(0deg);
+            }
+            75% {
+                transform: translate(-10px, -10px) rotate(-5deg);
+            }
+        }
+
+        /* Wing flutter */
+        @keyframes wingFlutter {
+            0%, 100% {
+                transform: rotateY(0deg);
+            }
+            50% {
+                transform: rotateY(180deg);
+            }
+        }
+
+        /* Responsive design */
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .title {
+                font-size: 36px;
+            }
+
+            .subtitle {
+                font-size: 20px;
+            }
+
+            .message {
+                font-size: 18px;
+            }
+
+            .message-container {
+                width: 90%;
+                padding: 15px;
+            }
+
+            .corner-decoration {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .title {
+                font-size: 30px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+            }
+
+            .message {
+                font-size: 16px;
+            }
+
+            .message-container {
+                width: 95%;
+                padding: 10px;
+            }
+
+            .corner-decoration {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Gradient Background -->
+    <div class="gradient-bg"></div>
+    <div class="decorative-circles" id="decorative-circles"></div>
+
+    <!-- Container -->
+    <div class="container">
+        <!-- Decorative Frame -->
+        <div class="decorative-frame"></div>
+
+        <!-- Corner Decorations -->
+        <div class="corner-decoration top-left">
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+                <g fill="#FF1493">
+                    <circle cx="50" cy="50" r="8"/>
+                    <circle cx="30" cy="50" r="8"/>
+                    <circle cx="70" cy="50" r="8"/>
+                    <circle cx="50" cy="30" r="8"/>
+                    <circle cx="50" cy="70" r="8"/>
+                    <circle cx="35" cy="35" r="8"/>
+                    <circle cx="65" cy="35" r="8"/>
+                    <circle cx="35" cy="65" r="8"/>
+                    <circle cx="65" cy="65" r="8"/>
+                    <circle cx="50" cy="50" r="12" fill="yellow"/>
+                </g>
+            </svg>
+        </div>
+        <div class="corner-decoration top-right">
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+                <path d="M50,20 C55,20 60,25 60,30 C60,35 55,40 50,40 C45,40 40,45 40,50 C40,55 45,60 50,60 C55,60 60,65 60,70 C60,75 55,80 50,80 C45,80 40,75 40,70 C40,65 35,60 30,60 C25,60 20,55 20,50 C20,45 25,40 30,40 C35,40 40,35 40,30 C40,25 45,20 50,20 Z" fill="#FF0000" />
+            </svg>
+        </div>
+        <div class="corner-decoration bottom-left">
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+                <!-- Butterfly body -->
+                <line x1="50" y1="30" x2="50" y2="70" stroke="black" stroke-width="4"/>
+                <!-- Butterfly wings -->
+                <ellipse cx="35" cy="40" rx="15" ry="20" fill="#9370DB" transform="rotate(-30 35 40)"/>
+                <ellipse cx="65" cy="40" rx="15" ry="20" fill="#9370DB" transform="rotate(30 65 40)"/>
+                <ellipse cx="35" cy="60" rx="10" ry="15" fill="#BA55D3" transform="rotate(-30 35 60)"/>
+                <ellipse cx="65" cy="60" rx="10" ry="15" fill="#BA55D3" transform="rotate(30 65 60)"/>
+                <!-- Butterfly antennae -->
+                <line x1="50" y1="30" x2="40" y2="15" stroke="black" stroke-width="2"/>
+                <line x1="50" y1="30" x2="60" y2="15" stroke="black" stroke-width="2"/>
+            </svg>
+        </div>
+        <div class="corner-decoration bottom-right">
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+                <g fill="#FF1493">
+                    <circle cx="50" cy="50" r="8"/>
+                    <circle cx="30" cy="50" r="8"/>
+                    <circle cx="70" cy="50" r="8"/>
+                    <circle cx="50" cy="30" r="8"/>
+                    <circle cx="50" cy="70" r="8"/>
+                    <circle cx="35" cy="35" r="8"/>
+                    <circle cx="65" cy="35" r="8"/>
+                    <circle cx="35" cy="65" r="8"/>
+                    <circle cx="65" cy="65" r="8"/>
+                    <circle cx="50" cy="50" r="12" fill="yellow"/>
+                </g>
+            </svg>
+        </div>
+
+        <!-- Header -->
+        <div class="header">
+            <h1 class="title">Chúc Mừng Ngày 8/3</h1>
+            <h2 class="subtitle">✿ Ngày Quốc Tế Phụ Nữ ✿</h2>
+        </div>
+
+        <!-- Message Container -->
+        <div class="message-container">
+            <p class="message" id="message"></p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>&copy; 2025 Chúc Mừng Ngày 8/3</p>
+        </div>
+    </div>
+
+    <script>
+        // Các thông điệp
+        const messages = [
+            "Chúc chị em luôn xinh đẹp, rạng ngời và thành công",
+            "Cảm ơn vì tất cả những điều tuyệt vời bạn đã mang đến cuộc sống",
+            "Chúc chị em có một ngày 8/3 tràn ngập niềm vui, hạnh phúc và yêu thương",
+            "Chúc chị em luôn tỏa sáng, mạnh mẽ và đầy năng lượng mỗi ngày",
+            "Mỗi nụ cười của bạn là nguồn cảm hứng cho thế giới này",
+            "Chúc chị em luôn nhận được sự trân trọng, yêu thương xứng đáng"
+        ];
+
+        // Chọn thông điệp ngẫu nhiên
+        let currentMessageIndex = 0;
+        let currentCharIndex = 0;
+        let messageElement = document.getElementById('message');
+
+        // Hàm hiển thị thông điệp từng ký tự
+        function typeMessage() {
+            const message = messages[currentMessageIndex];
+            if (currentCharIndex < message.length) {
+                messageElement.textContent += message.charAt(currentCharIndex);
+                currentCharIndex++;
+                setTimeout(typeMessage, 50);
+            } else {
+                // Đợi 3 giây rồi chuyển sang thông điệp tiếp theo
+                setTimeout(nextMessage, 3000);
+            }
+        }
+
+        // Hàm chuyển sang thông điệp tiếp theo
+        function nextMessage() {
+            // Hiệu ứng mờ dần
+            let opacity = 1;
+            const fadeInterval = setInterval(() => {
+                opacity -= 0.1;
+                messageElement.style.opacity = opacity;
+                if (opacity <= 0) {
+                    clearInterval(fadeInterval);
+                    currentMessageIndex = (currentMessageIndex + 1) % messages.length;
+                    currentCharIndex = 0;
+                    messageElement.textContent = '';
+                    messageElement.style.opacity = 1;
+                    typeMessage();
+                }
+            }, 100);
+        }
+
+        // Tạo vòng tròn trang trí
+        function createDecorativeCircles() {
+            const container = document.getElementById('decorative-circles');
+            for (let i = 0; i < 15; i++) {
+                const circle = document.createElement('div');
+                circle.classList.add('circle');
+                const size = Math.random() * 200 + 50;
+                circle.style.width = `${size}px`;
+                circle.style.height = `${size}px`;
+                circle.style.left = `${Math.random() * 100}%`;
+                circle.style.top = `${Math.random() * 100}%`;
+                container.appendChild(circle);
+            }
+        }
+
+        // Tạo các phần tử animation
+        function createAnimationElements() {
+            const container = document.body;
+            
+            // Tạo hoa
+            for (let i = 0; i < 10; i++) {
+                createFlower(container);
+            }
+            
+            // Tạo tim
+            for (let i = 0; i < 8; i++) {
+                createHeart(container);
+            }
+            
+            // Tạo bướm
+            for (let i = 0; i < 5; i++) {
+                createButterfly(container);
+            }
+            
+            // Tạo lấp lánh
+            for (let i = 0; i < 20; i++) {
+                createSparkle(container);
+            }
+            
+            // Tạo cánh hoa rơi
+            setInterval(() => {
+                createFallingPetal(container);
+            }, 2000);
+        }
+
+        // Tạo hoa
+        function createFlower(container) {
+            const flower = document.createElement('div');
+            flower.classList.add('flower');
+            
+            // Set position
+            const x = Math.random() * window.innerWidth * 0.8 + window.innerWidth * 0.1;
+            const y = Math.random() * window.innerHeight * 0.6 + window.innerHeight * 0.2;
+            flower.style.left = `${x}px`;
+            flower.style.top = `${y}px`;
+            
+            // Tạo cánh hoa
+            const numPetals = Math.floor(Math.random() * 3) + 6; // 6-8 cánh
+            const petalColors = ['#FF69B4', '#FF1493', '#C71585', '#DB7093'];
+            const petalColor = petalColors[Math.floor(Math.random() * petalColors.length)];
+            const size = Math.random() * 10 + 10; // 10-20px
+            
+            for (let i = 0; i < numPetals; i++) {
+                const petal = document.createElement('div');
+                petal.classList.add('petal');
+                petal.style.width = `${size}px`;
+                petal.style.height = `${size}px`;
+                petal.style.backgroundColor = petalColor;
+                
+                const angle = (i / numPetals) * 360;
+                const distance = size * 0.8;
+                const petalX = Math.cos(angle * Math.PI / 180) * distance;
+                const petalY = Math.sin(angle * Math.PI / 180) * distance;
+                
+                petal.style.transform = `translate(${petalX}px, ${petalY}px)`;
+                flower.appendChild(petal);
+            }
+            
+            // Tạo tâm hoa
+            const center = document.createElement('div');
+            center.classList.add('center');
+            center.style.width = `${size * 0.5}px`;
+            center.style.height = `${size * 0.5}px`;
+            flower.appendChild(center);
+            
+            // Animation
+            flower.style.animation = `float ${Math.random() * 4 + 3}s ease-in-out infinite`;
+            
+            container.appendChild(flower);
+            
+            // Di chuyển hoa
+            setInterval(() => {
+                const newX = parseFloat(flower.style.left) + (Math.random() * 2 - 1);
+                const newY = parseFloat(flower.style.top) + (Math.random() * 2 - 1);
+                
+                // Giữ trong giới hạn màn hình
+                if (newX > 0 && newX < window.innerWidth - 50) {
+                    flower.style.left = `${newX}px`;
+                }
+                if (newY > 0 && newY < window.innerHeight - 50) {
+                    flower.style.top = `${newY}px`;
+                }
+            }, 100);
+        }
+
+        // Tạo tim
+        function createHeart(container) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            
+            // Set position
+            const x = Math.random() * window.innerWidth * 0.8 + window.innerWidth * 0.1;
+            const y = Math.random() * window.innerHeight * 0.6 + window.innerHeight * 0.2;
+            heart.style.left = `${x}px`;
+            heart.style.top = `${y}px`;
+            
+            // Set color
+            const heartColors = ['#FF0000', '#FF1493', '#C71585', '#FF69B4'];
+            heart.style.color = heartColors[Math.floor(Math.random() * heartColors.length)];
+            
+            // Set size
+            const size = Math.random() * 20 + 20; // 20-40px
+            heart.style.width = `${size}px`;
+            heart.style.height = `${size}px`;
+            
+            // Animation
+            heart.style.animation = `pulse ${Math.random() * 2 + 1}s ease-in-out infinite`;
+            
+            container.appendChild(heart);
+            
+            // Di chuyển tim
+            let direction = Math.random() > 0.5 ? 1 : -1;
+            setInterval(() => {
+                const newX = parseFloat(heart.style.left) + direction * 0.5;
+                
+                // Đổi hướng khi chạm biên
+                if (newX < 0 || newX > window.innerWidth - 50) {
+                    direction *= -1;
+                }
+                
+                heart.style.left = `${newX}px`;
+            }, 50);
+        }
+
+        // Tạo bướm
+        function createButterfly(container) {
+            const butterfly = document.createElement('div');
+            butterfly.classList.add('butterfly');
+            
+            // Set position
+            const x = Math.random() * window.innerWidth * 0.8 + window.innerWidth * 0.1;
+            const y = Math.random() * window.innerHeight * 0.6 + window.innerHeight * 0.2;
+            butterfly.style.left = `${x}px`;
+            butterfly.style.top = `${y}px`;
+            
+            // Set size
+            const size = Math.random() * 15 + 15; // 15-30px
+            butterfly.style.width = `${size}px`;
+            butterfly.style.height = `${size * 1.5}px`;
+            
+            // Butterfly parts
+            const leftWing = document.createElement('div');
+            leftWing.classList.add('wing', 'left-wing');
+            butterfly.appendChild(leftWing);
+            
+            const rightWing = document.createElement('div');
+            rightWing.classList.add('wing', 'right-wing');
+            butterfly.appendChild(rightWing);
+            
+            const body = document.createElement('div');
+            body.classList.add('body');
+            butterfly.appendChild(body);
+            
+            const leftAntenna = document.createElement('div');
+            leftAntenna.classList.add('antenna', 'left-antenna');
+            butterfly.appendChild(leftAntenna);
+            
+            const rightAntenna = document.createElement('div');
+            rightAntenna.classList.add('antenna', 'right-antenna');
+            butterfly.appendChild(rightAntenna);
+            
+            // Set colors
+            const butterflyColors = ['#9370DB', '#8A2BE2', '#9400D3', '#BA55D3'];
+            const color = butterflyColors[Math.floor(Math.random() * butterflyColors.length)];
+            leftWing.style.backgroundColor = color;
+            rightWing.style.backgroundColor = color;
+            
+            // Animation
+            butterfly.style.animation = `flutter ${Math.random() * 5 + 5}s ease-in-out infinite`;
+            leftWing.style.animation = `wingFlutter ${Math.random() * 0.5 + 0.2}s ease-in-out infinite`;
+            rightWing.style.animation = `wingFlutter ${Math.random() * 0.5 + 0.2}s ease-in-out infinite alternate`;
+            
+            container.appendChild(butterfly);
+            
+            // Di chuyển bướm
+            let directionX = Math.random() > 0.5 ? 1 : -1;
+            let directionY = Math.random() > 0.5 ? 0.5 : -0.5;
+            setInterval(() => {
+                let newX = parseFloat(butterfly.style.left) + directionX;
+                let newY = parseFloat(butterfly.style.top) + directionY;
+                
+                // Đổi hướng khi chạm biên
+                if (newX < 0 || newX > window.innerWidth - 50) {
+                    directionX *= -1;
+                }
+                if (newY < 0 || newY > window.innerHeight - 50) {
+                    directionY *= -1;
+                }
+                
+                // Thay đổi hướng ngẫu nhiên
+                if (Math.random() < 0.02) {
+                    directionX = Math.random() > 0.5 ? 1 : -1;
+                    directionY = Math.random() > 0.5 ? 0.5 : -0.5;
+                }
+                
+                butterfly.style.left = `${newX}px`;
+                butterfly.style.top = `${newY}px`;
+            }, 50);
+        }
+
+        // Tạo đốm lấp lánh
+        function createSparkle(container) {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            
+            // Set position
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            sparkle.style.left = `${x}px`;
+            sparkle.style.top = `${y}px`;
+            
+            // Set size
+            const size = Math.random() * 3 + 2; // 2-5px
+            sparkle.style.width = `${size}px`;
+            sparkle.style.height = `${size}px`;
+            
+            // Animation delay
+            sparkle.style.animationDelay = `${Math.random() * 2}s`;
+            
+            container.appendChild(sparkle);
+        }
+
+        // Tạo cánh hoa rơi
+        function createFallingPetal(container) {
+            const petal = document.createElement('div');
+            petal.classList.add('falling-petal');
+            
+            // Set position
+            const x = Math.random() * window.innerWidth;
+            petal.style.left = `${x}px`;
+            petal.style.top = '0';
+            
+            // Set color
+            const petalColors = ['#FFB6C1', '#FF69B4', '#FF1493', '#DB7093'];
+            petal.style.backgroundColor = petalColors[Math.floor(Math.random() * petalColors.length)];
+            
+            // Set size
+            const size = Math.random() * 10 + 10; // 10-20px
+            petal.style.width = `${size}px`;
+            petal.style.height = `${size}px`;
+            
+            // Set animation duration
+            const duration = Math.random() * 10 + 5; // 5-15s
+            petal.style.animationDuration = `${duration}s`;
+            
+            // Thêm xoay ngẫu nhiên
+            petal.style.transform = `rotate(${Math.random() * 360}deg)`;
+            
+            container.appendChild(petal);
+            
+            // Xóa sau khi animation kết thúc
+            setTimeout(() => {
+                container.removeChild(petal);
+            }, duration * 1000);
+        }
+
+        // Khởi tạo trang
+        window.onload = function() {
+            createDecorativeCircles();
+            createAnimationElements();
+            typeMessage();
+        };
+    </script>
+</body>
+</html>
